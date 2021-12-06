@@ -16,6 +16,7 @@ var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M"
 var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialCharacter = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "^", "_", "{", "|", "}", "~" ];
 
+
 function passwordLength () {
   //ask user how long the password should be (either this or the next one should be a while loop)
   password.length = window.prompt("How many characters should your password contain?");
@@ -41,17 +42,35 @@ function passwordLength () {
       }
 }
 
+function characterTypeConfirm () {
+  //ask for character types to include in the password
+    //confirm lowercase
+    var lowercaseConfirm = window.confirm("Click OK to confirm using lowercase letters in your password.");
+    //confirm uppercase
+    var uppercaseConfirm = window.confirm("Click OK to confirm using uppercase letters in your password.");
+    //confirm numeric
+    var specialCharacterConfirm = window.confirm("Click OK to confirm using numbers in your password.");
+    //confirm special characters
+    var numberConfirm = window.confirm("Click OK to confirm using special characters in your password.");
+  //make sure that at least one character type was selected
+    if (lowercaseConfirm === false && uppercaseConfirm === false && specialCharacterConfirm === false && numberConfirm === false) {
+      window.alert("Your password must contain at least one of the character types. Please try again.")
+    }
+}
+
 function generatePassword () {
   //present user with a series of prompts for password criteria
   //ask user how long the password should be and store this as a variable called password.length
   passwordLength ();
-        //ask for character types to include in the password
-          //confirm lowercase
-          //confirm uppercase
-          //confirm numeric
-          //confirm special characters
-        //make sure that at least one character type was selected
-      //generate a password that matches selected criteria
+  console.log("Password length: " + password.length);
+
+  //ask for character types to include in the password
+  characterTypeConfirm ();
+
+  //generate a password that matches selected criteria
+    //conatenate arrays as needed to make an array that matches specs
+    
+
 };
 
 // Add event listener to generate button
