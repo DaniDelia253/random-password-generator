@@ -1,21 +1,19 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-function writePassword() {
-  //when the generateBtn is clicked, execute the following to get the password:
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
-
-};
-
+//arrays
 var lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialCharacter = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "^", "_", "{", "|", "}", "~" ];
+var characterChoice = [];
 
+//variables 
+var lowercaseConfirm = Boolean;
+var uppercaseConfirm = Boolean;
+var specialCharacterConfirm = Boolean;
+var numberConfirm = Boolean;
 
 function passwordLength () {
   //ask user how long the password should be (either this or the next one should be a while loop)
@@ -40,23 +38,50 @@ function passwordLength () {
         window.alert("This is not a valid input. Please select a number of characters between 8 and 128.");
         return passwordLength ();
       }
-}
+};
 
 function characterTypeConfirm () {
   //ask for character types to include in the password
     //confirm lowercase
     var lowercaseConfirm = window.confirm("Click OK to confirm using lowercase letters in your password.");
+    console.log(lowercaseConfirm);
     //confirm uppercase
     var uppercaseConfirm = window.confirm("Click OK to confirm using uppercase letters in your password.");
+    console.log(uppercaseConfirm);
     //confirm numeric
-    var specialCharacterConfirm = window.confirm("Click OK to confirm using numbers in your password.");
-    //confirm special characters
     var numberConfirm = window.confirm("Click OK to confirm using special characters in your password.");
-  //make sure that at least one character type was selected
+    console.log(numberConfirm);
+    //confirm special characters
+    var specialCharacterConfirm = window.confirm("Click OK to confirm using numbers in your password.");
+    console.log(specialCharacterConfirm);
+    //make sure that at least one character type was selected
     if (lowercaseConfirm === false && uppercaseConfirm === false && specialCharacterConfirm === false && numberConfirm === false) {
       window.alert("Your password must contain at least one of the character types. Please try again.")
+      return characterTypeConfirm ();
+    };
+
+    //if lowercase characters were selected, add them to the array
+    if (lowercaseConfirm === true) {
+    characterChoice = characterChoice.concat(lowercase);
+    console.log("lowercase letters added to possible password characters")
     }
-}
+    //if uppercase characters were selected, add them to the array
+    if (uppercaseConfirm === true) {
+      characterChoice = characterChoice.concat(uppercase);
+      console.log("uppercase letters added to possible password characters")
+    }
+    //if numbers were selected, add them to the array
+    if (numberConfirm === true) {
+      characterChoice = characterChoice.concat(number);
+      console.log("numbers added to possible password characters")
+    }
+    //if special characters were selected, add them to the array
+    if (specialCharacterConfirm === true) {
+      characterChoice = characterChoice.concat(specialCharacter);
+      console.log("special characters added to possible password characters")
+    }
+  };
+
 
 function generatePassword () {
   //present user with a series of prompts for password criteria
@@ -65,13 +90,29 @@ function generatePassword () {
   console.log("Password length: " + password.length);
 
   //ask for character types to include in the password
+  //conatenate arrays as needed to make an array that matches specs
   characterTypeConfirm ();
+  console.log("characterChoice array:" + characterChoice);
 
   //generate a password that matches selected criteria
-    //conatenate arrays as needed to make an array that matches specs
-    
+  
 
 };
+
+
+
+
+// Write password to the #password input
+function writePassword() {
+  //when the generateBtn is clicked, execute the following to get the password:
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+};
+
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
