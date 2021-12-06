@@ -32,8 +32,7 @@ function passwordLength () {
         return passwordLength ();
       }
       //if the password is between 8 and 128 characters, proceed
-      else if (password.length > 7 && passwordLength < 129) {
-        return passwordLength ();
+      else if (password.length > 7 && password.length < 129) {
       }
       //if the input is anything else (null, or any letters instead of numbers), try again
       else {
@@ -45,6 +44,7 @@ function passwordLength () {
 function generatePassword () {
   //present user with a series of prompts for password criteria
   //ask user how long the password should be and store this as a variable called password.length
+  passwordLength ();
         //ask for character types to include in the password
           //confirm lowercase
           //confirm uppercase
