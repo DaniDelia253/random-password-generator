@@ -40,6 +40,10 @@ function passwordLength () {
       }
 };
 
+function resetCharacterChoiceArray () {
+  characterChoice = [];
+};
+
 function characterTypeConfirm () {
   //ask for character types to include in the password
     //confirm lowercase
@@ -100,6 +104,10 @@ function generatePassword () {
     generatedPassword = generatedPassword + characterChoice[Math.floor(Math.random()*characterChoice.length)];
     console.log("generatedPassword is " + generatedPassword);
   };
+  
+  resetCharacterChoiceArray ();
+  console.log("characterChoice array:" + characterChoice);
+
   return generatedPassword;
 };
 
