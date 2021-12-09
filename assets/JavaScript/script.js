@@ -15,23 +15,14 @@ var uppercaseConfirm = Boolean;
 var specialCharacterConfirm = Boolean;
 var numberConfirm = Boolean;
 
-randomNumber="";
-
-
-var generateRandomNumber = function(min, max) {
-  var randomNumber = Math.floor(Math.random() * (max - min) + min);
-  console.log(randomNumber);
-  return randomNumber;
-};
-
 function passwordLength () {
-  //ask user how long the password should be
+  //ask user how long the password should be (either this or the next one should be a while loop)
   password.length = window.prompt("How many characters should your password contain?");
     //translate results of password.length from string to numerical
     password.length = parseInt(password.length);
       //if the length is less than 8, try again
       if (password.length < 8) {
-        window.alert("Password must contain more than 7 characters.");
+        window.alert("Password must contain more than 8 characters.");
         return passwordLength ();
       }
       //if the length is greater than 128, try again
@@ -104,11 +95,7 @@ function generatePassword () {
   console.log("characterChoice array:" + characterChoice);
 
   //generate a password that matches selected criteria
-  for (var i = 0; i < password.length; i++){
-    generateRandomNumber(0, characterChoice.length);
-    password = password + characterChoice[randomNumber];
-    console.log("generated password is: " + password);
-  };
+  
 
 };
 
