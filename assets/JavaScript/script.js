@@ -95,10 +95,13 @@ function generatePassword () {
   console.log("characterChoice array:" + characterChoice);
 
   //generate a password that matches selected criteria
-  
-
+  generatedPassword = "";
+  for (var i = 0; i < password.length; i++) {
+    generatedPassword = generatedPassword + characterChoice[Math.floor(Math.random()*characterChoice.length)];
+    console.log("generatedPassword is " + generatedPassword);
+  };
+  return generatedPassword;
 };
-
 
 
 
@@ -109,7 +112,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 };
 
 
